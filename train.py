@@ -76,6 +76,10 @@ def train_net(net,
                 true_masks = true_masks.cuda()
             
             masks_pred = net(imgs)
+            
+            print(true_masks.size())
+            print(masks_pred.size())
+            
             masks_probs_flat = masks_pred.view(-1)
             
             true_masks_flat = true_masks.view(-1)
