@@ -104,7 +104,7 @@ def get_args():
     parser = OptionParser()
     parser.add_option('-e','--epochs',dest = 'epochs', default = 5, type = 'int',
                       help = 'number of epochs') 
-    parser.add_option('-b','--batch-size', dest = 'batchsize', default = 3, type = 'int',
+    parser.add_option('-b','--batch-size', dest = 'batchsize', default = 2, type = 'int',
                       help = 'batchsize') 
     parser.add_option('-l', '--learning-rate', dest = 'lr', default = 0.1, type = float,
                       help = 'learning rate')
