@@ -38,7 +38,7 @@ class down(nn.Module):
         double_conv里，每一次的卷积核都为3×3，所以一次卷积完之后长/宽缩小了3-1个单位
     '''
     def __init__(self,in_ch,out_ch):
-        super(down, in_ch, out_ch).__init__()
+        super(down, self).__init__()
         self.mpconv = nn.Sequential(
             nn.MaxPool2d(2),
             double_conv(in_ch,out_ch)
