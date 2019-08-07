@@ -13,6 +13,8 @@ from eval import eval_net
 from unet.unet_model import Unet
 from utils.load import get_ids, split_ids, get_imgs_and_masks
 from utils.utils import split_train_val, batch
+
+
     
 def train_net(net,
               epochs = 5,
@@ -103,7 +105,7 @@ def get_args():
                       help = 'batchsize') 
     parser.add_option('-l', '--learning-rate', dest = 'lr', default = 0.1, type = float,
                       help = 'learning rate')
-    parser.add_option('-g', '--gpu', action = 'store_true', dest = 'lr', default = False, 
+    parser.add_option('-g', '--gpu', action = 'store_true', dest = 'lr', default = True, 
                       help = 'use cuda') 
     parser.add_option('-c', '--load', dest = 'load', default = False,
                       help = 'load file model')
@@ -115,7 +117,7 @@ def get_args():
 
 if __name__ == '__main__':
     args = get_args()
-    
+    os.environ["CUDA_VISIBLE_DEVICES"] = '0'
     net = Unet(n_channels=3, n_classes=1)
     
     if args.load:
