@@ -23,7 +23,7 @@ class double_conv(nn.Module):
         return x
     
 class in_conv(nn.Module):
-    '''把double_conv封装了一下,作为第一层内部的操作（无需上/下采样）'''
+    #把double_conv封装了一下,作为第一层内部的操作（无需上/下采样）'''
     def __init__(self,in_ch,out_ch):
         super(in_conv,self).__init__()
         self.conv = double_conv(in_ch,out_ch)
@@ -33,10 +33,10 @@ class in_conv(nn.Module):
         return x
 
 class down(nn.Module):
-    '''左侧的操作，先maxpool再double_conv。
-        maxpool的核为2，就是每2×2取一个值，这样长和宽都变为原来的一半
-        double_conv里，每一次的卷积核都为3×3，所以一次卷积完之后长/宽缩小了3-1个单位
-    '''
+#                    左侧的操作，先maxpool再double_conv。
+#        maxpool的核为2，就是每2×2取一个值，这样长和宽都变为原来的一半
+#        double_conv里，每一次的卷积核都为3×3，所以一次卷积完之后长/宽缩小了3-1个单位
+    
     def __init__(self,in_ch,out_ch):
         super(down, self).__init__()
         self.mpconv = nn.Sequential(
@@ -49,11 +49,12 @@ class down(nn.Module):
         return x
     
 class up(nn.Module):
-    '''先把图像的长和宽都扩大到原来的2倍（上采样/反卷积）
-        r之后再用pad把图像周围扩大一圈（为下一步的卷积做准备）
-        r再之后
-    '''
+#                       先把图像的长和宽都扩大到原来的2倍（上采样/反卷积）
+#         r之后再用pad把图像周围扩大一圈（为下一步的卷积做准备）
+#         r再之后
     def __init__(self, in_ch, out_ch, bilinear = True):
+        super(up,self).__init__()
+        
         if bilinear:
             self.up = nn.Upsample(scale_factor=2, mode='bilinear', align_corners=True)
         else:
