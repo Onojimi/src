@@ -68,6 +68,9 @@ def train_net(net,
             imgs = np.array([i[0] for i in b]).astype(np.float32)
             true_masks = np.array(i[1] for i in b)
             
+            imgs = torch.from_numpy(imgs)
+            true_masks = torch.from_numpy(true_masks)
+            
             if gpu:
                 imgs = imgs.cuda()
                 true_masks = true_masks.cuda()
