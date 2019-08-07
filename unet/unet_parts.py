@@ -25,7 +25,7 @@ class double_conv(nn.Module):
 class in_conv(nn.Module):
     '''把double_conv封装了一下,作为第一层内部的操作（无需上/下采样）'''
     def __init__(self,in_ch,out_ch):
-        super(in_conv).__init__()
+        super(in_conv,self).__init__()
         self.conv = double_conv(in_ch,out_ch)
         
     def forward(self,x):
