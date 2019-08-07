@@ -58,42 +58,41 @@ def train_net(net,
             print('Starting epoch {}/{}.'.format(epoch + 1, epochs))
             net.train()
         
-        #reset the generators
-        train = get_imgs_and_masks(iddataset['train'],img_dir,mask_dir, img_scale)     
-        val = get_imgs_and_masks(iddataset['val'], img_dir, mask_dir, img_scale) 
+            #reset the generators
+            train = get_imgs_and_masks(iddataset['train'],img_dir,mask_dir, img_scale)     
+            val = get_imgs_and_masks(iddataset['val'], img_dir, mask_dir, img_scale) 
         
-        epoch_loss = 0
+            epoch_loss = 0
         
-        for i, b in enumerate(batch(train, batch_size)):
-            imgs = np.array([i[0] for i in b]).astype(np.float32)
-            true_masks = np.array([i[1] for i in b])
+            for i, b in enumerate(batch(train, batch_size)):
+                imgs = np.array([i[0] for i in b]).astype(np.float32)
+                true_masks = np.array([i[1] for i in b])
             
-            imgs = torch.from_numpy(imgs)
-            true_masks = torch.from_numpy(true_masks)
+                imgs = torch.from_numpy(imgs)
+                true_masks = torch.from_numpy(true_masks)
             
-            if gpu:
-                imgs = imgs.cuda()
-                true_masks = true_masks.cuda()
+                if gpu:
+                    imgs = imgs.cuda()
+                    true_masks = true_masks.cuda()
             
-            masks_pred = net(imgs)
+                masks_pred = net(imgs)
             
-            print(true_masks.size())
-            print(masks_pred.size())
+                print(true_masks.size())
+                print(masks_pred.size())
             
-            masks_probs_flat = masks_pred.view(-1)
+                masks_probs_flat = masks_pred.view(-1)
+                true_masks_flat = true_masks.view(-1)
             
-            true_masks_flat = true_masks.view(-1)
+                loss = criterion(masks_probs_flat, true_masks_flat)
+                epoch_loss += loss.item()
             
-            loss = criterion(masks_probs_flat, true_masks_flat)
-            epoch_loss += loss.item()
+                print('{0:.4f} --- loss: {1:.6f}'.format(i * batch_size / N_train, loss.item()))
             
-            print('{0:.4f} --- loss: {1:.6f}'.format(i * batch_size / N_train, loss.item()))
-            
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
         
-        print('Epoch finished ! Loss: {}'.format(epoch_loss / i))
+            print('Epoch finished ! Loss: {}'.format(epoch_loss / i))
         
         if 1:
             val_dice = eval_net(net, val, gpu)
@@ -103,7 +102,7 @@ def train_net(net,
 #             torch.save(net.state_dict(),
 #                        dir_checkpoint + 'CP{}.pth'.format(epoch + 1))
 #             print('Checkpoint {} saved !'.format(epoch + 1))       
- 
+  
 def get_args():
     parser = OptionParser()
     parser.add_option('-e','--epochs',dest = 'epochs', default = 5, type = 'int',
