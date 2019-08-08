@@ -130,7 +130,7 @@ def get_args():
                       help = 'use cuda') 
     parser.add_option('-c', '--load', dest = 'load', default = False,
                       help = 'load file model')
-    parser.add_option('-s', '--scale', dest = 'scale', default = 1, type = float,
+    parser.add_option('-s', '--scale', dest = 'scale', default = 0.5, type = float,
                       help = 'downscaling factor of the images') 
     
     (options, args) = parser.parse_args() 
