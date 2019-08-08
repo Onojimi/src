@@ -15,6 +15,7 @@ from unet.unet_model import Unet
 from utils.load import get_ids, split_ids, get_imgs_and_masks
 from utils.utils import split_train_val, batch, normalize
 import pdb
+import torch.nn.DataParallel as Parallel
 
 
     
@@ -140,6 +141,7 @@ if __name__ == '__main__':
     args = get_args()
 #     os.environ["CUDA_VISIBLE_DEVICES"] = '0'
     net = Unet(n_channels=3, n_classes=1)
+    
 #     net.cuda()
 #     import pdb
 #     from torchsummary import summary 
@@ -150,6 +152,9 @@ if __name__ == '__main__':
         print('Model loaded from {}'.format(args.load))
         
     if args.gpu:
+        pdb.set_trace()
+        if torch.device_count()>1:
+            net = Parallel(net)
         net.cuda()
         
     try:
