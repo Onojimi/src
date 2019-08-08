@@ -25,7 +25,7 @@ def train_net(net,
               val_percent = 0.1,
               save_cp = False,
               gpu = True,
-              img_scale = 1):
+              img_scale = 0.5):
     
         img_dir = 'images/'
         mask_dir = 'masks/'
