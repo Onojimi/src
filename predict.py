@@ -54,7 +54,7 @@ def get_args():
     parser.add_argument('--model', '-m', default='MODEL.pth',
                         metavar='FILE',
                         help="Specify the file in which is stored the model"
-                             " (default : 'MODEL.pth')")
+                             " (default : 'model_fin.pth')")
     parser.add_argument('--input', '-i', metavar='INPUT', nargs='+',
                         help='filenames of input images', required=True)
 
