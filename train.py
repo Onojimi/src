@@ -15,7 +15,7 @@ from unet.unet_model import Unet
 from utils.load import get_ids, split_ids, get_imgs_and_masks
 from utils.utils import split_train_val, batch, normalize
 import pdb
-import torch.nn.DataParallel as Parallel
+
 
 
     
@@ -154,7 +154,7 @@ if __name__ == '__main__':
     if args.gpu:
         pdb.set_trace()
         if torch.device_count()>1:
-            net = Parallel(net)
+            net = nn.DataParallel(net)
         net.cuda()
         
     try:
