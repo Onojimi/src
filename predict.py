@@ -51,7 +51,7 @@ def predict_img(net,
         
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', '-m', default='MODEL.pth',
+    parser.add_argument('--model', '-m', default='model_fin.pth',
                         metavar='FILE',
                         help="Specify the file in which is stored the model"
                              " (default : 'model_fin.pth')")
