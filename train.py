@@ -86,8 +86,8 @@ def train_net(net,
                 masks_pred_show = masks_pred_show*255
                 
                 print(masks_pred_show[0])
-                mask_show1 = Image.fromarray(masks_pred_show[0], 'L')
-                mask_show2 = Image.fromarray(masks_pred_show[1], 'L')
+                mask_show1 = Image.fromarray(masks_pred_show[0].squeeze(), 'L')
+                mask_show2 = Image.fromarray(masks_pred_show[1].squeeze(), 'L')
                  
                 mask_show1.show()
                 
