@@ -36,7 +36,19 @@ def predict_img(net,
         img = img.cuda()
     
     with torch.no_grad():
-        output = net(img)
-        output = output.squeeze(0)
+        img_probs = net(img)
+        img_probs = img_probs.squeeze(0)
+        
+        tf = transforms.Compose(
+            [
+                transforms.ToPILImage(),
+                transforms.Resize(img_height),
+                transforms.ToTensor()
+            ]
+        )
+        
+        img_probs = tf(img)
+        img_mask_np = img_probs.squeeze().cpu().numpy()
+        
         
     
