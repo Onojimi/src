@@ -84,10 +84,12 @@ def train_net(net,
                 masks_pred_detach = masks_pred.cpu().detach().numpy()
                 masks_pred_show = np.transpose(masks_pred_detach, [0,2,3,1])
                 
-                mask_show1 = Image.fromarray(masks_pred_show[0], 'RGB')
-                mask_show2 = Image.fromarray(masks_pred_show[1], 'RGB')
+                print(masks_pred_show[0])
+#                 mask_show1 = Image.fromarray(masks_pred_show[0], 'RGB')
+#                 mask_show2 = Image.fromarray(masks_pred_show[1], 'RGB')
+#                 
+#                 mask_show1.show()
                 
-                mask_show1.show()
             
                 masks_probs_flat = masks_pred.view(-1)
                 true_masks_flat = true_masks.view(-1)
