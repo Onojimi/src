@@ -3,6 +3,7 @@ import sys
 import os
 import numpy as np
 from optparse import OptionParser
+from PIL import Image
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -79,6 +80,13 @@ def train_net(net,
             
                 print(true_masks.size())
                 print(masks_pred.size())
+                
+                masks_pred_show = np.transpose(masks_pred, [0,2,3,1])
+                
+                mask_show1 = Image.fromarray(masks_pred_show[0], 'RGB')
+                mask_show2 = Image.fromarray(masks_pred_show[1], 'RGB')
+                
+                mask_show1.show()
             
                 masks_probs_flat = masks_pred.view(-1)
                 true_masks_flat = true_masks.view(-1)
