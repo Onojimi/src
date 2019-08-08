@@ -81,7 +81,7 @@ def train_net(net,
                 print(true_masks.size())
                 print(masks_pred.size())
                 
-                masks_pred_detach = masks_pred.detach().numpy()
+                masks_pred_detach = masks_pred.cup().detach().numpy()
                 masks_pred_show = np.transpose(masks_pred_detach, [0,2,3,1])
                 
                 mask_show1 = Image.fromarray(masks_pred_show[0], 'RGB')
