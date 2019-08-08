@@ -106,6 +106,8 @@ if __name__ == "__main__":
     out_files = get_output_filenames(args)
 
     net = Unet(n_channels=3, n_classes=1)
+    
+    net = torch.nn.DataParalle(net)
 
     print("Loading model {}".format(args.model))
 
