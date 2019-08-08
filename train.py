@@ -141,7 +141,7 @@ if __name__ == '__main__':
     pdb.set_trace()
     from torchsumary import summary 
     summary(net, (3,1000,1000))
-    return(0)
+    pdb.set_trace()
     if args.load:
         net.load_state_dict(torch.load(args.load))
         print('Model loaded from {}'.format(args.load))
