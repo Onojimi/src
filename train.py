@@ -153,7 +153,7 @@ if __name__ == '__main__':
         
     if args.gpu:
         pdb.set_trace()
-        if torch.device_count()>1:
+        if torch.cuda.device_count()>1:
             net = nn.DataParallel(net)
         net.cuda()
         
