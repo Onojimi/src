@@ -78,18 +78,18 @@ def train_net(net,
             
                 masks_pred = net(imgs)
             
-                print(true_masks.size())
-                print(masks_pred.size())
-                
-                masks_pred_detach = masks_pred.cpu().detach().numpy()
-                masks_pred_show = np.transpose(masks_pred_detach, [0,2,3,1])
-                masks_pred_show = masks_pred_show*255
-                
-                print(masks_pred_show[0])
-                mask_show1 = Image.fromarray(masks_pred_show[0].squeeze(), 'L')
-                mask_show2 = Image.fromarray(masks_pred_show[1].squeeze(), 'L')
-                 
-                mask_show1.show()
+#                 print(true_masks.size())
+#                 print(masks_pred.size())
+#                 
+#                 masks_pred_detach = masks_pred.cpu().detach().numpy()
+#                 masks_pred_show = np.transpose(masks_pred_detach, [0,2,3,1])
+#                 masks_pred_show = masks_pred_show*255
+#                 
+#                 print(masks_pred_show[0])
+#                 mask_show1 = Image.fromarray(masks_pred_show[0].squeeze(), 'L')
+#                 mask_show2 = Image.fromarray(masks_pred_show[1].squeeze(), 'L')
+#                  
+#                 mask_show1.show()
                 
             
                 masks_probs_flat = masks_pred.view(-1)
