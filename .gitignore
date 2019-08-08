@@ -1,4 +1,5 @@
 /masks
 /images
 /nucGen
-exp.py
+/exp.py
+*.png
