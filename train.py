@@ -138,7 +138,7 @@ def get_args():
 
 if __name__ == '__main__':
     args = get_args()
-    os.environ["CUDA_VISIBLE_DEVICES"] = '0'
+#     os.environ["CUDA_VISIBLE_DEVICES"] = '0'
     net = Unet(n_channels=3, n_classes=1)
 #     net.cuda()
 #     import pdb
