@@ -36,6 +36,8 @@ def predict_img(net,
         img_probs = net(img)
         img_probs = img_probs.squeeze(0)
         
+        print(img_probs.shape)
+        
         tf = transforms.Compose(
             [
                 transforms.ToPILImage(),
