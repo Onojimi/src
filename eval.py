@@ -20,6 +20,6 @@ def eval_net(net, dataset, gpu = False):
         mask_pred = net(img)[0]
         mask_pred = (mask_pred > 0.5).float()
         
-        tot+=DiceCoeff.dice_coeff(mask_pred, true_mask).item()
+        tot+=DiceCoeff.dice_coeff(input = mask_pred, target = true_mask).item()
     
     return tot/(i+1)
