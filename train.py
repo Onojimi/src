@@ -137,7 +137,11 @@ if __name__ == '__main__':
     args = get_args()
     os.environ["CUDA_VISIBLE_DEVICES"] = '0'
     net = Unet(n_channels=3, n_classes=1)
-    
+    import pdb
+    pdb.set_trace()
+    from torchsumary import summary 
+    summary(net, (3,1000,1000))
+    return(0)
     if args.load:
         net.load_state_dict(torch.load(args.load))
         print('Model loaded from {}'.format(args.load))
