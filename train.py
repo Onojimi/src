@@ -13,7 +13,7 @@ from torch import optim
 from eval import eval_net
 from unet.unet_model import Unet
 from utils.load import get_ids, split_ids, get_imgs_and_masks
-from utils.utils import split_train_val, batch
+from utils.utils import split_train_val, batch, normalize
 import pdb
 
 
@@ -72,6 +72,8 @@ def train_net(net,
             
                 imgs = torch.from_numpy(imgs)
                 true_masks = torch.from_numpy(true_masks)
+                
+                true_masks = normalize(true_masks)
             
                 if gpu:
                     imgs = imgs.cuda()
