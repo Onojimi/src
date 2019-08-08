@@ -36,7 +36,7 @@ def resize_and_crop(img_pil, scale = 0.5, final_height = None):
     return np.array(img_pil, dtype = np.float32)  
 
 def batch(iterable, batch_size):
-    '''生成batch'''
+    #生成batch
     b = []
     for i, t in enumerate(iterable):
         b.append(t)
@@ -48,9 +48,9 @@ def batch(iterable, batch_size):
         yield b
 
 def split_train_val(dataset,val_percent = 0.1):
-    '''划分数据集,只是单纯的从数量上划分'''
-    '''返回一个字典,两个key分别是train,val '''
-    '''value是文件名'''
+    #划分数据集,只是单纯的从数量上划分
+    #返回一个字典,两个key分别是train,val
+    #value是文件名
     dataset = list(dataset)
     length = len(dataset)
     n = int(length*val_percent)
@@ -58,10 +58,11 @@ def split_train_val(dataset,val_percent = 0.1):
     return {'train': dataset[:-n],'val':dataset[-n:]}
 
 def normalize(x):
-    '''正则化'''
+    #对于每个像素点的brightness[0,255]进行正则化
     return x/255
 
 def merge_masks(img1, img2, full_w):
+    #对长方形的图片，生成左边一个mask右边一个mask，再把两个mask融合起来
     h = img1.shape[0]
     
     new = np.zeros((h,full_w), np.float32)
