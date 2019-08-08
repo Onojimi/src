@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
     net = Unet(n_channels=3, n_classes=1)
     
-    net = torch.nn.DataParalle(net)
+    net = torch.nn.DataParallel(net)
 
     print("Loading model {}".format(args.model))
 
