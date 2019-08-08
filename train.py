@@ -139,7 +139,7 @@ if __name__ == '__main__':
     net = Unet(n_channels=3, n_classes=1)
     import pdb
     pdb.set_trace()
-    from torchsumary import summary 
+    from torchsummary import summary 
     summary(net, (3,1000,1000))
     pdb.set_trace()
     if args.load:
