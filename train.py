@@ -14,6 +14,7 @@ from eval import eval_net
 from unet.unet_model import Unet
 from utils.load import get_ids, split_ids, get_imgs_and_masks
 from utils.utils import split_train_val, batch
+import pdb
 
 
     
@@ -22,8 +23,8 @@ def train_net(net,
               batch_size = 1,
               lr = 0.1,
               val_percent = 0.1,
-              save_cp = True,
-              gpu = False,
+              save_cp = False,
+              gpu = True,
               img_scale = 1):
     
         img_dir = 'images/'
@@ -94,7 +95,7 @@ def train_net(net,
             
                 masks_probs_flat = masks_pred.view(-1)
                 true_masks_flat = true_masks.view(-1)
-            
+                pdb.set_trace()
                 loss = criterion(masks_probs_flat, true_masks_flat)
                 epoch_loss += loss.item()
             
