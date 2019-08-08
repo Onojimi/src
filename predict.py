@@ -27,6 +27,8 @@ def predict_img(net,
     img = hwc_to_chw(img)
     img = torch.from_numpy(img).unsqueeze(0)
     
+    print(img.shape)
+    
     if use_gpu:
         img = img.cuda()
     
