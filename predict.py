@@ -21,7 +21,7 @@ def predict_img(net,
                 full_img,
                 scale_factor = 1,
                 out_threshold = 0.5,
-                use_dense_crf = True,
+                use_dense_crf = False,
                 use_gpu = True):
     net.eval()
     img_height = full_img.size[1]
@@ -49,6 +49,42 @@ def predict_img(net,
         
         img_probs = tf(img)
         img_mask_np = img_probs.squeeze().cpu().numpy()
+    
+#     if use_dense_crf:
+#         img_mask = dense_crf(np.array(full_img))
+    return img_mask_np > out_threshold
         
-        
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model', '-m', default='MODEL.pth',
+                        metavar='FILE',
+                        help="Specify the file in which is stored the model"
+                             " (default : 'MODEL.pth')")
+    parser.add_argument('--input', '-i', metavar='INPUT', nargs='+',
+                        help='filenames of input images', required=True)
+
+    parser.add_argument('--output', '-o', metavar='INPUT', nargs='+',
+                        help='filenames of ouput images')
+    parser.add_argument('--cpu', '-c', action='store_true',
+                        help="Do not use the cuda version of the net",
+                        default=False)
+    parser.add_argument('--viz', '-v', action='store_true',
+                        help="Visualize the images as they are processed",
+                        default=False)
+    parser.add_argument('--no-save', '-n', action='store_true',
+                        help="Do not save the output masks",
+                        default=False)
+    parser.add_argument('--no-crf', '-r', action='store_true',
+                        help="Do not use dense CRF postprocessing",
+                        default=False)
+    parser.add_argument('--mask-threshold', '-t', type=float,
+                        help="Minimum probability value to consider a mask pixel white",
+                        default=0.5)
+    parser.add_argument('--scale', '-s', type=float,
+                        help="Scale factor for the input images",
+                        default=0.5)
+
+    return parser.parse_args()     
+
+   
     
