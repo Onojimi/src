@@ -9,7 +9,7 @@ class DiceCoeff(Function):
         self.inter = torch.dot(input.view(-1), target.view(-1))
         self.union = torch.sum(input)+torch.sum(target)+eps
         
-        t = (2 * self.enter.float() + eps) / self.union.float()
+        t = (2 * self.inter.float() + eps) / self.union.float()
         return t
     
     @staticmethod
