@@ -46,7 +46,7 @@ def predict_img(net,
             ]
         )
         
-        img_probs = tf(img)
+        img_probs = tf(img_probs)
         img_mask_np = img_probs.squeeze().cpu().numpy()
     
 #     if use_dense_crf:
