@@ -3,6 +3,7 @@
 /nucGen
 /exp.py
 *.png
+*.tif
 exp.py
 /images_cut
 /masks_cut
