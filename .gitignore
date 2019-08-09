@@ -4,3 +4,5 @@
 /exp.py
 *.png
 exp.py
+/images_cut
+/masks_cut
