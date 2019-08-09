@@ -125,7 +125,7 @@ def get_args():
     parser = OptionParser()
     parser.add_option('-e','--epochs',dest = 'epochs', default = 5, type = 'int',
                       help = 'number of epochs') 
-    parser.add_option('-b','--batch-size', dest = 'batchsize', default = 2, type = 'int',
+    parser.add_option('-b','--batch-size', dest = 'batchsize', default = 5, type = 'int',
                       help = 'batchsize') 
     parser.add_option('-l', '--learning-rate', dest = 'lr', default = 0.1, type = float,
                       help = 'learning rate')
@@ -133,7 +133,7 @@ def get_args():
                       help = 'use cuda') 
     parser.add_option('-c', '--load', dest = 'load', default = False,
                       help = 'load file model')
-    parser.add_option('-s', '--scale', dest = 'scale', default = 0.5, type = float,
+    parser.add_option('-s', '--scale', dest = 'scale', default = 1, type = float,
                       help = 'downscaling factor of the images') 
     
     (options, args) = parser.parse_args() 
