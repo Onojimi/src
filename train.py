@@ -28,8 +28,8 @@ def train_net(net,
               gpu = True,
               img_scale = 0.5):
     
-        img_dir = 'images/'
-        mask_dir = 'masks/'
+        img_dir = 'images_cut/'
+        mask_dir = 'masks_cut/'
         #checkpoint_dir =
         
         ids = get_ids(img_dir)
