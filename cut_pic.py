@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 def cut_pics(img_name):
-    img = Image.open("images/"+img_name+".tif")
+    img = Image.open("masks/"+img_name+".png")
     img_np = np.array(img)
     
     h = img_np.shape[0]
@@ -12,18 +12,18 @@ def cut_pics(img_name):
     mid_h = int(h/2)
     mid_w = int(w/2)
     
-    img_lt = Image.fromarray(img_np[:mid_h,:mid_w], 'RGB')
-    img_rt = Image.fromarray(img_np[:mid_h,mid_w:], 'RGB')
-    img_lb = Image.fromarray(img_np[mid_h:,:mid_w], 'RGB')
-    img_rb = Image.fromarray(img_np[mid_h:,mid_w:], 'RGB')
+    img_lt = Image.fromarray(img_np[:mid_h,:mid_w], 'L')
+    img_rt = Image.fromarray(img_np[:mid_h,mid_w:], 'L')
+    img_lb = Image.fromarray(img_np[mid_h:,:mid_w], 'L')
+    img_rb = Image.fromarray(img_np[mid_h:,mid_w:], 'L')
      
-    img_lt.save("images_cut/"+img_name+"_1.tif")
-    img_rt.save("images_cut/"+img_name+"_2.tif")
-    img_lb.save("images_cut/"+img_name+"_3.tif")
-    img_rb.save("images_cut/"+img_name+"_4.tif")
+    img_lt.save("masks_cut/"+img_name+"1.png")
+    img_rt.save("masks_cut/"+img_name+"2.png")
+    img_lb.save("masks_cut/"+img_name+"3.png")
+    img_rb.save("masks_cut/"+img_name+"4.png")
     
     
-for f in os.listdir("images/"):
+for f in os.listdir("masks/"):
     img_name = f[:-4]
     cut_pics(img_name)
 
