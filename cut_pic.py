@@ -14,10 +14,10 @@ def rotate_pic(im, im_name, type):
         im3.save("images_cut/"+im_name+"4.tif")
         
     elif type is 'masks':
-        im.save("masks_cut/"+im_name+"1_mask.tif")
-        im1.save("masks_cut/"+im_name+"2_mask.tif")
-        im2.save("masks_cut/"+im_name+"3_mask.tif")
-        im3.save("masks_cut/"+im_name+"4_mask.tif")
+        im.save("masks_cut/"+im_name+"1_mask.png")
+        im1.save("masks_cut/"+im_name+"2_mask.png")
+        im2.save("masks_cut/"+im_name+"3_mask.png")
+        im3.save("masks_cut/"+im_name+"4_mask.png")
 
 def cut_pics(im_name):
     img = Image.open("images/"+im_name+".tif")
