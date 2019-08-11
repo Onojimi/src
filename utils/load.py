@@ -2,6 +2,8 @@
 
 import os
 
+import pdb
+
 import numpy as np
 from PIL import Image
 
@@ -18,13 +20,16 @@ def split_ids(ids, n=2):
     return((id, i) for id in ids for i in range(n))
 
 def to_cropped_imgs(ids, img_dir, suffix, scale):
-    for id, pos in ids:
+    for id in ids:
+        #dor id, pos in ids: pos指的是元组 中表示位置的0/1
         img = resize_and_crop(Image.open(img_dir + id + suffix), scale)
-        yield get_square(img, pos)
+        # img是一个np_array. 原来这里是yield square(img,pos)
+        yield img
         
 def get_imgs_and_masks(ids, img_dir, mask_dir, scale):
     imgs =  to_cropped_imgs(ids, img_dir, '.tif', scale)
-    
+    print(type(imgs))
+    pdb.set_trace()
     imgs_switched = map(hwc_to_chw, imgs)
     imgs_normalized = map(normalize, imgs_switched)
     
