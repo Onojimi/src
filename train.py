@@ -32,11 +32,12 @@ def train_net(net,
         mask_dir = 'masks_cut/'
         #checkpoint_dir =
         
-        ids = get_ids(img_dir)
-        ids = split_ids(ids) 
+        ids = get_ids(img_dir)      #['4488','6778','8767'...]
+        #ids = split_ids(ids)        #[('4488',0),('4488',1),()....]
         
         iddataset = split_train_val(ids, val_percent)
-        
+        print(iddataset, type(iddataset))
+        pdb.set_trace()
         print('''
         Starting training:
         Epochs: {}
