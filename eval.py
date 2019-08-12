@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 import numpy as np
-
+import pdb
 def compute_iou(true, pred):
     true_mask = np.asanyarray(true, dtype = np.bool)
     pred_mask = np.asanyarray(pred, dtype = np.bool)
@@ -29,6 +29,7 @@ def eval_net(net, dataset, gpu = False):
         mask_pred = (mask_pred > 0.5).float()
         mask_pred_np = np.array(mask_pred.cpu())
         print(mask_pred_np,true_mask)
+        pdb.set_trace()
 
         iou += compute_iou(true_mask,mask_pred_np)
     
