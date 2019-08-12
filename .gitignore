@@ -7,3 +7,8 @@
 exp.py
 /images_cut
 /masks_cut
+cut_pic.py
+exp.py
+*.pyc
+cut_pic.py
+exp.py
