@@ -71,8 +71,8 @@ def train_net(net,
                 imgs = np.array([i[0] for i in b]).astype(np.float32)
                 true_masks = np.array([i[1] for i in b])
                 #see if mask and pics match
-                img_show = Image.fromarray(imgs, 'RGB')
-                mask_show = Image.fromarray(true_masks,'L')
+                img_show = Image.fromarray(imgs[0], 'RGB')
+                mask_show = Image.fromarray(true_masks[0],'L')
                 
                 img_show.show()
                 mask_show.show()
