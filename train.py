@@ -64,8 +64,6 @@ def train_net(net,
             train = get_imgs_and_masks(iddataset['train'],img_dir,mask_dir, img_scale)     
             val = get_imgs_and_masks(iddataset['val'], img_dir, mask_dir, img_scale) 
             
-            print(iddataset['val'])
-            
             epoch_loss = 0
         
             for i, b in enumerate(batch(train, batch_size)):
