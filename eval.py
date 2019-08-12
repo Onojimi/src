@@ -30,10 +30,11 @@ def eval_net(net, dataset, gpu = False):
         mask_pred = net(img)[0]
 
        
-        pdb.set_trace()
+       
         mask_pred = (mask_pred > 0.5).float()
         mask_pred_np = np.array(mask_pred)
         print(type(mask_pred_np),mask_pred_np.size,true_mask.shape)
+        pdb.set_trace()
 #        tot+=dice_coeff(input = mask_pred, target = true_mask).item()
     
     return tot/(i+1)
