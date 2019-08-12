@@ -21,7 +21,6 @@ def to_cropped_imgs(ids, img_dir, suffix, scale):
         
 def get_imgs_and_masks(ids, img_dir, mask_dir, scale):
     imgs =  to_cropped_imgs(ids, img_dir, '.tif', scale)
-    print(type(imgs))
     imgs_switched = map(hwc_to_chw, imgs)
     imgs_normalized = map(normalize, imgs_switched)
     
