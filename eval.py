@@ -1,9 +1,6 @@
 import torch
 import torch.nn.functional as F
 import numpy as np
-import pdb
-
-from dice_loss import dice_coeff
 
 def compute_iou(true, pred):
     true_mask = np.asanyarray(true.convert('L'), dtype = np.bool)
@@ -15,7 +12,7 @@ def compute_iou(true, pred):
 
 def eval_net(net, dataset, gpu = False):
     net.eval()
-    tot = 0
+    iou = 0
     for i, b in enumerate(dataset):
         img = b[0]
         true_mask = b[1]
@@ -28,13 +25,10 @@ def eval_net(net, dataset, gpu = False):
 #            true_mask = true_mask.cuda()
         
         mask_pred = net(img)[0]
-
-       
        
         mask_pred = (mask_pred > 0.5).float()
         mask_pred_np = np.array(mask_pred.cpu())
-        print(type(mask_pred_np),mask_pred_np.size,true_mask.shape)
-        pdb.set_trace()
-#        tot+=dice_coeff(input = mask_pred, target = true_mask).item()
+
+        iou += compute_iou(true_mask,mask_pred_np)
     
-    return tot/(i+1)
+    return iou/(i+1)
