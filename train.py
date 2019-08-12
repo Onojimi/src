@@ -30,14 +30,12 @@ def train_net(net,
     
         img_dir = 'images_cut/'
         mask_dir = 'masks_cut/'
-        #checkpoint_dir =
+        checkpoint_dir ='checkpoints/'
         
         ids = get_ids(img_dir)      #['4488','6778','8767'...]
-        #ids = split_ids(ids)        #[('4488',0),('4488',1),()....]
         
         iddataset = split_train_val(ids, val_percent)
-        print(iddataset, type(iddataset))
-        pdb.set_trace()
+        
         print('''
         Starting training:
         Epochs: {}
@@ -117,10 +115,10 @@ def train_net(net,
                 val_dice = eval_net(net, val, gpu)
                 print('Validation Dice Coeff: {}'.format(val_dice))
 
-#         if save_cp:
-#             torch.save(net.state_dict(),
-#                        dir_checkpoint + 'CP{}.pth'.format(epoch + 1))
-#             print('Checkpoint {} saved !'.format(epoch + 1))       
+            if save_cp:
+                torch.save(net.state_dict(),
+                           checkpoint_dir + 'CP{}.pth'.format(epoch + 1))
+                print('Checkpoint {} saved !'.format(epoch + 1))       
   
 def get_args():
     parser = OptionParser()
@@ -155,7 +153,6 @@ if __name__ == '__main__':
         print('Model loaded from {}'.format(args.load))
         
     if args.gpu:
-        pdb.set_trace()
         if torch.cuda.device_count()>1:
             net = nn.DataParallel(net)
         net.cuda()
