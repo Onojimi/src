@@ -29,8 +29,8 @@ def train_net(net,
               gpu = True,
               img_scale = 0.5):
     
-        img_dir = 'images_cut/'
-        mask_dir = 'masks_cut/'
+        img_dir = 'images/'
+        mask_dir = 'masks/'
         checkpoint_dir ='checkpoints/'
         
         ids = get_ids(img_dir)      #['4488','6778','8767'...]
