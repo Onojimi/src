@@ -18,7 +18,7 @@ def to_cropped_imgs(ids, img_dir, suffix, scale):
         yield img
         
 def get_imgs_and_masks(ids, img_dir, mask_dir, scale):
-    imgs =  to_cropped_imgs(ids, img_dir, '.tif', scale)
+    imgs =  to_cropped_imgs(ids, img_dir, '.png', scale)
     imgs_switched = map(hwc_to_chw, imgs)
     imgs_normalized = map(normalize, imgs_switched)
     
@@ -26,6 +26,6 @@ def get_imgs_and_masks(ids, img_dir, mask_dir, scale):
     return zip(imgs_normalized, masks)
 
 def get_full_img_and_mask(id, img_dir, mask_dir):
-    img_pil = Image.open(img_dir + id + '.tif')
+    img_pil = Image.open(img_dir + id + '.png')
     mask_pil = Image.open(mask_dir + id + '_mask.png')
     return np.array(img_pil), np.array(mask_pil)
