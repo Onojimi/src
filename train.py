@@ -109,8 +109,8 @@ def train_net(net,
             print('Epoch finished ! Loss: {}'.format(epoch_loss / i))
         
             if 1:
-                val_dice = eval_net(net, val, gpu)
-                print('Validation Dice Coeff: {}'.format(val_dice))
+                val_iou = eval_net(net, val, gpu)
+                print('Validation IoU: {}'.format(val_iou))
 
             if save_cp:
                 torch.save(net.state_dict(),
