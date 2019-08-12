@@ -1,6 +1,7 @@
 #This is for training models, testing 1
 import sys
 import os
+import pdb
 import numpy as np
 from optparse import OptionParser
 from PIL import Image
@@ -69,7 +70,15 @@ def train_net(net,
             for i, b in enumerate(batch(train, batch_size)):
                 imgs = np.array([i[0] for i in b]).astype(np.float32)
                 true_masks = np.array([i[1] for i in b])
-            
+                #查看mask与image匹不匹配
+                img_show = Image.fromarray(imgs, 'RGB')
+                mask_show = Image.fromarray(true_masks,'L')
+                
+                img_show.show()
+                mask_show.show()
+                
+                pdb.set_trace()
+                
                 imgs = torch.from_numpy(imgs)
                 true_masks = torch.from_numpy(true_masks)
                 
