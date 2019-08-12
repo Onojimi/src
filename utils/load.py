@@ -14,9 +14,7 @@ def get_ids(img_dir):
 
 def to_cropped_imgs(ids, img_dir, suffix, scale):
     for id in ids:
-        #dor id, pos in ids: pos指的是元组 中表示位置的0/1
-        img = resize_and_crop(Image.open(img_dir + id + suffix), scale)
-        # img是一个np_array. 原来这里是yield square(img,pos)
+        img = np.array(Image.open(img_dir + id + suffix))
         yield img
         
 def get_imgs_and_masks(ids, img_dir, mask_dir, scale):
