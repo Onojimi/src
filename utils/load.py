@@ -4,7 +4,7 @@ import os
 import numpy as np
 from PIL import Image
 
-from utils.utils import resize_and_crop, get_square, normalize, hwc_to_chw
+from utils.utils import resize_and_crop, normalize, hwc_to_chw
 
 
 
