@@ -1,9 +1,6 @@
 # -*- coding: gb2312 -*-
 
 import os
-
-import pdb
-
 import numpy as np
 from PIL import Image
 
@@ -15,10 +12,6 @@ def get_ids(img_dir):
 #       读取当前文件夹下的所有文件名
     return (f[:-4] for f in os.listdir(img_dir))
 
-def split_ids(ids, n=2):
-#         构建元组（文件名，0/1）
-    return((id, i) for id in ids for i in range(n))
-
 def to_cropped_imgs(ids, img_dir, suffix, scale):
     for id in ids:
         #dor id, pos in ids: pos指的是元组 中表示位置的0/1
@@ -29,7 +22,6 @@ def to_cropped_imgs(ids, img_dir, suffix, scale):
 def get_imgs_and_masks(ids, img_dir, mask_dir, scale):
     imgs =  to_cropped_imgs(ids, img_dir, '.tif', scale)
     print(type(imgs))
-    pdb.set_trace()
     imgs_switched = map(hwc_to_chw, imgs)
     imgs_normalized = map(normalize, imgs_switched)
     
