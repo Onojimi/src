@@ -27,7 +27,7 @@ def eval_net(net, dataset, gpu = False):
         
         mask_pred = net(img)[0]
        
-        mask_pred = (mask_pred > 0.5).float(),
+        mask_pred = (mask_pred > 0.5).float()
         mask_pred_np = np.array(mask_pred.cpu()).squeeze(0)
         print(mask_pred_np,true_mask)
         pdb.set_trace()
