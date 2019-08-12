@@ -21,7 +21,7 @@ def eval_net(net, dataset, gpu = False):
         true_mask = b[1]
         
         img = torch.from_numpy(img).unsqueeze(0)
-        true_mask = torch.from_numpy(true_mask).unsqueeze(0)
+#        true_mask = torch.from_numpy(true_mask).unsqueeze(0)
         
         if gpu:
             img = img.cuda()
@@ -29,11 +29,11 @@ def eval_net(net, dataset, gpu = False):
         
         mask_pred = net(img)[0]
 
-        print(type(mask_pred),mask_pred.size)
+       
         pdb.set_trace()
         mask_pred = (mask_pred > 0.5).float()
         mask_pred_np = np.array(mask_pred)
-        
+        print(type(mask_pred_np),mask_pred_np.size,true_mask.shape)
 #        tot+=dice_coeff(input = mask_pred, target = true_mask).item()
     
     return tot/(i+1)
