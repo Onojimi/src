@@ -16,6 +16,7 @@ def eval_net(net, dataset, gpu = False):
     for i, b in enumerate(dataset):
         img = b[0]
         true_mask = b[1]
+        true_mask /=255
         
         img = torch.from_numpy(img).unsqueeze(0)
 #        true_mask = torch.from_numpy(true_mask).unsqueeze(0)
@@ -26,8 +27,8 @@ def eval_net(net, dataset, gpu = False):
         
         mask_pred = net(img)[0]
        
-        mask_pred = (mask_pred > 0.5).float()
-        mask_pred_np = np.array(mask_pred.cpu())
+        mask_pred = (mask_pred > 0.5).float(),
+        mask_pred_np = np.array(mask_pred.cpu()).squeeze(0)
         print(mask_pred_np,true_mask)
         pdb.set_trace()
 
