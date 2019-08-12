@@ -28,9 +28,11 @@ def eval_net(net, dataset, gpu = False):
 #            true_mask = true_mask.cuda()
         
         mask_pred = net(img)[0]
-        print(type(mask_pred))
+
+        print(type(mask_pred),mask_pred.size)
         pdb.set_trace()
         mask_pred = (mask_pred > 0.5).float()
+        mask_pred_np = np.array(mask_pred)
         
 #        tot+=dice_coeff(input = mask_pred, target = true_mask).item()
     
