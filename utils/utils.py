@@ -3,23 +3,6 @@
 import random
 import numpy as np
 
-
-def get_square(img_np, pos):
-    #按照原本图片的高截成一个正方形.这里原本数据集的图片是长方形的
-    '''for this dataset however, you don't really have to. 
-    Because it's already square.'''
-    h = img_np.shape[0]
-    if pos == 0:
-        return img_np[:,:h]
-    else:
-        return img_np[:,-h:]
-
-def split_img_into_sqares(img_np):
-    #按照原本图片的高截成一个正方形.'''
-    '''for this dataset however, you don't really have to. 
-    Because it's already square.'''
-    return get_square(img_np, 0), get_square(img_np, 0)
-
 def hwc_to_chw(img_np):
     #img_pil转化成img_np后，维度是(h,w,c,)，转换成(c,h,w)'''
     return np.transpose(img_np, axes = [2,0,1])
