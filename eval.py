@@ -24,7 +24,7 @@ def eval_net(net, dataset, gpu = False):
         
         if gpu:
             img = img.cuda()
-#            true_mask = true_mask.cuda()
+            true_mask_torch = true_mask_torch.cuda()
 
         criterion = nn.BCELoss()
         
