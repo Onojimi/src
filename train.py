@@ -97,7 +97,7 @@ def train_net(net,
                 
             
                 masks_probs_flat = masks_pred.view(-1)
-                true_masks_flat = true_masks.view(-1)
+                true_masks_flat = true_masks.view(-1).astype(np.float32)
                 loss = criterion(masks_probs_flat, true_masks_flat)
                 epoch_loss += loss.item()
             
