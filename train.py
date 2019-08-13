@@ -14,7 +14,7 @@ from torch import optim
 from eval import eval_net
 from unet.unet_model import Unet
 from utils.load import get_ids, get_imgs_and_masks
-from utils.utils import split_train_val, batch, normalize
+from utils.utils import split_train_val, batch, normalize, hwc_to_chw
 
 
 
@@ -75,7 +75,8 @@ def train_net(net,
                 mask_show = Image.fromarray(true_masks[0], 'L')
                 mask_show.show()
                 
-                img_show = Image.fromarray(imgs[0], 'RGB')
+                img_show = np.transpose(imgs[0], [1,2,0]) 
+                img_show = Image.fromarray(img_show, 'RGB')
                 img_show.show()
                 
                 imgs = torch.from_numpy(imgs)
