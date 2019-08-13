@@ -68,19 +68,9 @@ def train_net(net,
             epoch_loss = 0
         
             for i, b in enumerate(batch(train, batch_size)):
-                imgs = np.array([i[0] for i in b])
-#                imgs = np.array([i[0] for i in b]).astype(np.float32)
+                imgs = np.array([i[0] for i in b]).astype(np.float32)
                 true_masks = np.array([i[1] for i in b])
-                
-                mask_show = Image.fromarray(true_masks[1], 'L')
-                mask_show.show()
-                
-                img = imgs[1]*255
-                img = img.astype(np.uint8)
-                img_show = np.transpose(img, [1,2,0]) 
-                img_show = Image.fromarray(img_show, 'RGB')
-                img_show.show()
-                
+                 
                 imgs = torch.from_numpy(imgs)
                 true_masks = torch.from_numpy(true_masks)
                 
@@ -90,21 +80,7 @@ def train_net(net,
                     imgs = imgs.cuda()
                     true_masks = true_masks.cuda()
             
-                masks_pred = net(imgs)
-            
-#                 print(true_masks.size())
-#                 print(masks_pred.size())
-#                 
-#                 masks_pred_detach = masks_pred.cpu().detach().numpy()
-#                 masks_pred_show = np.transpose(masks_pred_detach, [0,2,3,1])
-#                 masks_pred_show = masks_pred_show*255
-#                 
-#                 print(masks_pred_show[0])
-#                 mask_show1 = Image.fromarray(masks_pred_show[0].squeeze(), 'L')
-#                 mask_show2 = Image.fromarray(masks_pred_show[1].squeeze(), 'L')
-#                  
-#                 mask_show1.show()
-                
+                masks_pred = net(imgs)              
             
                 masks_probs_flat = masks_pred.view(-1)
                 true_masks_flat = true_masks.view(-1)
