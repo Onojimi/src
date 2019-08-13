@@ -14,7 +14,8 @@ def get_ids(img_dir):
 
 def to_cropped_imgs(ids, img_dir, suffix, scale):
     for id in ids:
-        img = np.array(Image.open(img_dir + id + suffix), dtype = np.float32)
+#        img = np.array(Image.open(img_dir + id + suffix), dtype = np.float32)
+        img = np.array(Image.open(img_dir + id + suffix))
         yield img
         
 def get_imgs_and_masks(ids, img_dir, mask_dir, scale):
