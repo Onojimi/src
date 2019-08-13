@@ -75,7 +75,7 @@ def train_net(net,
                 mask_show = Image.fromarray(true_masks[0], 'L')
                 mask_show.show()
                 
-                img_show = Image.fromarray(imgs[0], 'RBG')
+                img_show = Image.fromarray(imgs[0], 'RGB')
                 img_show.show()
                 
                 imgs = torch.from_numpy(imgs)
