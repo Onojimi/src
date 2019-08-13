@@ -69,7 +69,7 @@ def train_net(net,
         
             for i, b in enumerate(batch(train, batch_size)):
                 imgs = np.array([i[0] for i in b]).astype(np.float32)
-                true_masks = np.array([i[1] for i in b])
+                true_masks = np.array([i[1] for i in b]).astype(np.float32)
                 
                 imgs = torch.from_numpy(imgs)
                 true_masks = torch.from_numpy(true_masks)
@@ -97,7 +97,7 @@ def train_net(net,
                 
             
                 masks_probs_flat = masks_pred.view(-1)
-                true_masks_flat = true_masks.view(-1).astype(np.float32)
+                true_masks_flat = true_masks.view(-1)
                 loss = criterion(masks_probs_flat, true_masks_flat)
                 epoch_loss += loss.item()
             
