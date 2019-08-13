@@ -26,7 +26,6 @@ def batch(iterable, batch_size):
     #Éú³Ébatch
     b = []
     for i, t in enumerate(iterable):
-        print(i)
         b.append(t)
         if(i + 1)%batch_size == 0:
             yield b
