@@ -68,8 +68,15 @@ def train_net(net,
             epoch_loss = 0
         
             for i, b in enumerate(batch(train, batch_size)):
-                imgs = np.array([i[0] for i in b]).astype(np.float32)
+                imgs = np.array([i[0] for i in b])
+#                imgs = np.array([i[0] for i in b]).astype(np.float32)
                 true_masks = np.array([i[1] for i in b])
+                
+                mask_show = Image.fromarray(true_masks, 'L')
+                mask_show.show()
+                
+                img_show = Image.fromarray(imgs, 'RBG')
+                img_show.show()
                 
                 imgs = torch.from_numpy(imgs)
                 true_masks = torch.from_numpy(true_masks)
