@@ -1,5 +1,5 @@
 import torch
-import torch.nn.functional as F
+import torch.nn as nn
 import numpy as np
 import pdb
 def compute_iou(true, pred):
@@ -13,6 +13,7 @@ def compute_iou(true, pred):
 def eval_net(net, dataset, gpu = False):
     net.eval()
     iou = 0
+    ls = 0
     for i, b in enumerate(dataset):
         img = b[0]
         true_mask = b[1]
@@ -29,7 +30,9 @@ def eval_net(net, dataset, gpu = False):
        
         mask_pred = (mask_pred > 0.5).float()
         mask_pred_np = np.array(mask_pred.cpu()).squeeze(0)
+        
+        ls+= nn.BCELoss(mask_pred.view(-1),true_mask.view(-1)) 
 
         iou += compute_iou(true_mask,mask_pred_np)
     
-    return iou/(i+1)
+    return iou/(i+1), ls/(i+1)
