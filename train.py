@@ -13,6 +13,7 @@ from torch import optim
 
 from eval import eval_net
 from unet.unet_model import Unet
+from unet.model import UNet2
 from utils.load import get_ids, get_imgs_and_masks
 from utils.utils import split_train_val, batch, normalize, hwc_to_chw
 
@@ -125,7 +126,7 @@ def get_args():
 if __name__ == '__main__':
     args = get_args()
 #     os.environ["CUDA_VISIBLE_DEVICES"] = '0'
-    net = Unet(n_channels=3, n_classes=1)
+    net = UNet2(n_channels=3, n_classes=1)
     
 #     net.cuda()
 #     import pdb
