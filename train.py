@@ -72,10 +72,10 @@ def train_net(net,
 #                imgs = np.array([i[0] for i in b]).astype(np.float32)
                 true_masks = np.array([i[1] for i in b])
                 
-                mask_show = Image.fromarray(true_masks[0], 'L')
+                mask_show = Image.fromarray(true_masks[1], 'L')
                 mask_show.show()
                 
-                img = imgs[0]*255
+                img = imgs[1]*255
                 img = img.astype(np.uint8)
                 img_show = np.transpose(img, [1,2,0]) 
                 img_show = Image.fromarray(img_show, 'RGB')
