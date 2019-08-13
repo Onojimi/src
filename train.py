@@ -76,7 +76,7 @@ def train_net(net,
                 mask_show.show()
                 
                 img = imgs[0]*255
-                img_show = np.transpose(imgs[0], [1,2,0]) 
+                img_show = np.transpose(img, [1,2,0]) 
                 img_show = Image.fromarray(img_show, 'RGB')
                 img_show.show()
                 
