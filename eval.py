@@ -18,20 +18,22 @@ def eval_net(net, dataset, gpu = False):
         img = b[0]
         true_mask = b[1]
         true_mask /=255
-        
+        print(type(true_mask))
         img = torch.from_numpy(img).unsqueeze(0)
 #        true_mask = torch.from_numpy(true_mask).unsqueeze(0)
         
         if gpu:
             img = img.cuda()
 #            true_mask = true_mask.cuda()
+
+        criterion = nn.BCELoss()
         
         mask_pred = net(img)[0]
        
         mask_pred = (mask_pred > 0.5).float()
         mask_pred_np = np.array(mask_pred.cpu()).squeeze(0)
         
-        ls+= nn.BCELoss(mask_pred.view(-1),true_mask.view(-1)) 
+        ls+= criterion(mask_pred.view(-1),true_mask.view(-1)) 
 
         iou += compute_iou(true_mask,mask_pred_np)
     
