@@ -19,8 +19,8 @@ def eval_net(net, dataset, gpu = False):
         true_mask = b[1].astype(np.float32)
         true_mask /=255
         true_mask_torch = torch.from_numpy(true_mask)
-        true_mask_torch = true_mask_torch.type(torch.FloatTensor)
         img = torch.from_numpy(img).unsqueeze(0)
+        img = img.type(torch.FloatTensor)
 #        true_mask = torch.from_numpy(true_mask).unsqueeze(0)
         
         if gpu:
